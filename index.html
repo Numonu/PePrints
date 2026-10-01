@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DEPOT · Decoración y hogar</title>
+  <meta name="description" content="Catálogo de decoración para el hogar. Consulta por WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;500;600&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+      <a href="#inicio" class="logo">PE PRINTS</a>
+      <nav class="main-nav" id="mainNav" aria-label="Principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#productos">Productos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div class="header-right">
+        <a href="#" class="header-wa" id="headerWa" target="_blank" rel="noopener">WhatsApp</a>
+        <button type="button" class="cart-btn" id="cartBtn" aria-haspopup="dialog">
+          Carrito <span class="cart-count" id="cartCount">(0)</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-panel" style="display: flex; align-content: center; flex-direction: column; align-items: center; text-align: center;">
+        <div class="hero-text" style="display: flex; align-content: center; flex-direction: column; align-items: center; text-align: center;">
+          <h1>
+            <img src="Static/logo.jpeg" alt="" style="mix-blend-mode: multiply; max-width: 350px; margin-bottom: -25px;">
+          </h1>
+          <p style="font-size: 18px; max-width: 500px;">Vendemos Llaveros, Juguetes y Decoraciones. Tenemos un catalogo de productos y también hacemos diseños a personalizados a pedido del cliente! 🇵🇪 
+          <br>
+          <span style="color:rgb(255, 143, 86);font-weight: bold; font-size: 12px;"> ENVIOS A TODO LIMA!</span>  
+        </p>
+          <a href="#productos" style="margin-bottom: 20px;" class="btn-link">Ver productos</a>
+        </div>
+        <!--
+        <div class="hero-img">
+          <img src="images/hero.svg" alt="Reloj de diseño sobre base de madera">
+        </div>
+        -->
+      </div>
+    </section>
+
+    <section class="catalog" id="productos">
+      <div class="container">
+        <div class="catalog-bar">
+          <div class="filters" id="filters" role="tablist" aria-label="Categorías"></div>
+        </div>
+        <div class="grid" id="productGrid" aria-live="polite">
+          <p class="state-msg">Cargando productos…</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contacto">
+    <div class="container footer-cols">
+      <div>
+        <h3>Atención</h3>
+        <ul>
+          <li><a href="#" id="footerWa" target="_blank" rel="noopener">Escríbenos por WhatsApp</a></li>
+          <li><span>Lun a Vie, 9:00 am – 9:pm</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Tienda</h3>
+        <ul>
+          <li><a href="#productos">Catálogo</a></li>
+          <li><a href="#inicio">Inicio</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Redes</h3>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">TikTok</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Información</h3>
+        <ul>
+          <li><a href="#">Envíos y entregas</a></li>
+          <li><a href="#">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <span>© <span id="year"></span> DEPOT. Todos los derechos reservados.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Popup de producto -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <article class="modal-card" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+      <button class="modal-close" data-close aria-label="Cerrar">&times;</button>
+      <div class="modal-img">
+        <div class="modal-main"><img id="mImg" src="" alt=""></div>
+        <div class="thumbs" id="mThumbs" hidden></div>
+      </div>
+      <div class="modal-info">
+        <span class="badge" id="mStock"></span>
+        <h2 id="mTitle"></h2>
+        <p class="modal-price"><span id="mPrice"></span><span class="ship-note" data-ship></span></p>
+        <p class="modal-desc" id="mDesc"></p>
+
+        <div class="modal-block">
+          <h4>Color</h4>
+          <div class="swatches" id="mColors" role="radiogroup" aria-label="Color"></div>
+          <span class="color-name" id="mColorName"></span>
+        </div>
+
+        <div class="modal-block">
+          <h4>Medidas</h4>
+          <dl class="dims" id="mDims"></dl>
+        </div>
+
+        <div class="warning" id="mWarning" hidden>
+          Este producto no está en stock por lo que no se podrá entregar el mismo día. Trabajamos a diario para aumentar nuestra producción, muchas gracias.
+        </div>
+
+        <a class="btn-wa" id="mWa" href="#" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+        <button type="button" class="btn-ghost" id="mAddCart">Agregar al carrito y seguir comprando</button>
+      </div>
+    </article>
+  </div>
+
+  <!-- Carrito -->
+  <div class="cart" id="cart" hidden>
+    <div class="cart-backdrop" data-cart-close></div>
+    <aside class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="cart-head">
+        <h2 id="cartTitle">Tu carrito</h2>
+        <button type="button" class="cart-close" data-cart-close aria-label="Cerrar carrito">&times;</button>
+      </div>
+      <p class="cart-empty" id="cartEmpty">Tu carrito está vacío.</p>
+      <ul class="cart-list" id="cartList"></ul>
+      <div class="cart-foot" id="cartFoot" hidden>
+        <div class="cart-total"><span>Total estimado</span><div class="cart-total-val"><strong id="cartTotal"></strong><span class="ship-note" data-ship></span></div></div>
+        <div class="warning" id="cartWarning" hidden>
+          Algunos productos no están en stock por lo que no se podrán entregar el mismo día. Trabajamos a diario para aumentar nuestra producción, muchas gracias.
+        </div>
+        <a class="btn-wa" id="cartWa" href="#" target="_blank" rel="noopener">Pedir paquete por WhatsApp</a>
+        <button type="button" class="btn-ghost" id="cartClear">Vaciar carrito</button>
+      </div>
+    </aside>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
