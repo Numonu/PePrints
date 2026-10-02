@@ -132,5 +132,38 @@
     },
     "stock": "a pedido",
     "categoria": "Decoraciones"
+  },
+  {
+    "id": 6,
+    "nombre": "Tung Tung Sahur BUDDY - Articulado",
+    "descripcion": "Tung Tung Sahur con piernas móviles",
+    "precio": 4,
+    "imagen": "images/tung-tung-sahur-buddy-articulado.png",
+    "imagenes": [
+      "images/tung-tung-sahur-buddy-articulado.png",
+      "images/tung-tung-sahur-buddy-articulado-2.png",
+      "images/tung-tung-sahur-buddy-articulado-3.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffbc40"
+      },
+      {
+        "nombre": "Azul Noche",
+        "hex": "#0000a0"
+      },
+      {
+        "nombre": "Rojo Peach",
+        "hex": "#ff8080"
+      }
+    ],
+    "medidas": {
+      "alto": 5,
+      "ancho": 5,
+      "profundidad": 5
+    },
+    "stock": "disponible",
+    "categoria": "Juguetes"
   }
 ]
