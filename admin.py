@@ -9,6 +9,9 @@ Uso:   python admin.py      (desde la raíz del proyecto)
   y es la que se ve en la miniatura.
 - Al guardar, las imágenes nuevas se copian a images/ usando el "Nombre base" que escribas
   (llavero-gato.png, llavero-gato-2.gif, llavero-gato-3.jpg…). La extensión se conserva.
+- Vista previa de la imagen seleccionada (JPG/WEBP requieren Pillow: pip install pillow).
+- Presets de color: se guardan en admin_presets.json, junto a este script.
+- Al guardar un producto se hace git push automático (data/products.json e images/).
 """
 import json
 import os
@@ -17,14 +20,22 @@ import shutil
 import subprocess
 import threading
 import unicodedata
+import webbrowser
 from pathlib import Path
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox, colorchooser
 
+try:  # opcional: con Pillow la vista previa también funciona con JPG y WEBP
+    from PIL import Image, ImageTk
+except ImportError:
+    Image = ImageTk = None
+
 ROOT = Path(__file__).resolve().parent
 JSON_PATH = ROOT / "data" / "products.json"
+PRESETS_PATH = ROOT / "admin_presets.json"   # presets de color (no se sube a GitHub)
 IMG_DIR = ROOT / "images"
 IMG_EXTS = (".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg")
+PREVIEW_SIZE = 140   # lado (px) del recuadro de vista previa
 
 DEFAULT_CATEGORIES = ["Juguetes", "Decoraciones", "Llaveros"]
 STOCK_OPTIONS = ["disponible", "a pedido"]
@@ -49,6 +60,34 @@ def save_products(products):
         f.write("\n")
     tmp.replace(JSON_PATH)
 
+
+HEX_RE = re.compile(r"#[0-9a-fA-F]{6}")
+
+
+def load_presets():
+    """Presets de color guardados: [{"nombre":..., "hex":...}]. Si no hay archivo, lista vacía."""
+    try:
+        with open(PRESETS_PATH, encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, ValueError):
+        return []
+    out = []
+    for c in data if isinstance(data, list) else []:
+        if isinstance(c, dict) and c.get("nombre") and HEX_RE.fullmatch(str(c.get("hex", ""))):
+            out.append({"nombre": str(c["nombre"]), "hex": c["hex"].lower()})
+    return out
+
+
+def save_presets(presets):
+    tmp = PRESETS_PATH.with_suffix(".json.tmp")
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(presets, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+    tmp.replace(PRESETS_PATH)
+
+
+SITE_URL = "https://numonu.github.io/PePrints/"
+PAGES_WAIT = 60   # segundos que tarda aprox. GitHub Pages en actualizar
 
 GIT_PATHS = ["data/products.json", "images"]   # lo único que se sube
 GIT_LOCK = threading.Lock()
@@ -110,15 +149,44 @@ def parse_number(text, field, required=True):
     return int(n) if n == int(n) else n
 
 
+def load_preview(path, box=PREVIEW_SIZE):
+    """Miniatura de una imagen. Devuelve (PhotoImage | None, (ancho, alto) | None, mensaje)."""
+    path = Path(path)
+    ext = path.suffix.lower()
+    if not path.exists():
+        return None, None, "Archivo no encontrado"
+    if ext == ".svg":
+        return None, None, "SVG: sin vista previa"
+    try:
+        if Image is not None:                      # con Pillow: PNG, JPG, WEBP, GIF…
+            with Image.open(path) as im:
+                size = im.size
+                im.thumbnail((box, box))
+                thumb = im.convert("RGBA")
+            return ImageTk.PhotoImage(thumb), size, ""
+        if ext in (".png", ".gif"):                # sin Pillow: solo lo que Tk sabe leer
+            img = tk.PhotoImage(file=str(path))
+            w, h = img.width(), img.height()
+            f = max(1, -(-w // box), -(-h // box))  # reducción entera (redondeo hacia arriba)
+            if f > 1:
+                img = img.subsample(f, f)
+            return img, (w, h), ""
+        return None, None, f"Sin vista previa para {ext}\n(instala Pillow:\npip install pillow)"
+    except Exception:
+        return None, None, "No se pudo mostrar\nla imagen"
+
+
 # ------------------------------------------------------------------ interfaz
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Administrador de productos")
-        self.geometry("980x740")
-        self.minsize(860, 680)
+        self.geometry("980x780")
+        self.minsize(860, 720)
 
         self.products = load_products()
+        self.presets = load_presets()   # presets de color guardados
+        self._preview_photo = None      # referencia a la miniatura (si no, Tk la borra)
         self.current = None        # índice del producto en edición (None = nuevo)
         self.colors = []           # [{"nombre":..., "hex":...}]
         self.images = []           # [{"path": "images/x.png" | None, "src": Path | None}]
@@ -191,14 +259,22 @@ class App(tk.Tk):
         ttk.Label(right, text="Imágenes *").grid(row=r, column=0, sticky="nw")
         imf = ttk.Frame(right)
         imf.grid(row=r, column=1, columnspan=3, sticky="ew")
-        self.lb_images = tk.Listbox(imf, height=6, width=52, exportselection=False)
+        self.lb_images = tk.Listbox(imf, height=6, width=38, exportselection=False)
         self.lb_images.pack(side="left")
+        self.lb_images.bind("<<ListboxSelect>>", self.update_preview)
         ib = ttk.Frame(imf)
         ib.pack(side="left", padx=10, anchor="n")
         for text, cmd in (("Agregar imágenes…", self.add_images), ("Quitar seleccionada", self.remove_image),
                           ("Subir", lambda: self.move_image(-1)), ("Bajar", lambda: self.move_image(1)),
                           ("Hacer principal ★", self.make_main)):
             ttk.Button(ib, text=text, command=cmd).pack(fill="x", pady=1)
+        pv = ttk.Frame(imf)                       # vista previa de la imagen seleccionada
+        pv.pack(side="left", anchor="n")
+        self.cv_preview = tk.Canvas(pv, width=PREVIEW_SIZE, height=PREVIEW_SIZE, bg="#f2f2f2",
+                                    highlightthickness=1, highlightbackground="#bbb")
+        self.cv_preview.pack()
+        self.lbl_preview = ttk.Label(pv, text="", foreground="#666")
+        self.lbl_preview.pack()
         r += 1
         ttk.Label(right, text="★ = principal (miniatura). Acepta PNG, JPG, WEBP, GIF y SVG.",
                   foreground="#666").grid(row=r, column=1, columnspan=3, sticky="w")
@@ -231,12 +307,31 @@ class App(tk.Tk):
         ttk.Button(row3, text="Quitar seleccionado", command=self.remove_color).pack(side="left", padx=4)
 
         r += 1
+        ttk.Label(right, text="Presets").grid(row=r, column=0, sticky="w", pady=(8, 0))
+        pf = ttk.Frame(right)
+        pf.grid(row=r, column=1, columnspan=3, sticky="w", pady=(8, 0))
+        self.v_preset = tk.StringVar()
+        self.cb_preset = ttk.Combobox(pf, textvariable=self.v_preset, state="readonly", width=26)
+        self.cb_preset.pack(side="left")
+        self.cb_preset.bind("<<ComboboxSelected>>", self.on_preset_select)
+        self.sw_preset = tk.Label(pf, width=3, relief="solid", borderwidth=1)   # muestra del color
+        self.sw_preset.pack(side="left", padx=6)
+        self._sw_default = self.sw_preset.cget("bg")
+        ttk.Button(pf, text="Añadir al producto", command=self.use_preset).pack(side="left")
+        ttk.Button(pf, text="Guardar como preset", command=self.save_preset).pack(side="left", padx=4)
+        ttk.Button(pf, text="Borrar preset", command=self.delete_preset).pack(side="left")
+        self.refresh_presets()
+
+        r += 1
         bar = ttk.Frame(right)
         bar.grid(row=r, column=0, columnspan=4, sticky="e", pady=16)
         self.lbl_mode = ttk.Label(bar, text="")
         self.lbl_mode.pack(side="left", padx=12)
         self.lbl_git = ttk.Label(bar, text="")
         self.lbl_git.pack(side="left", padx=12)
+        self._view_timer = None
+        self.btn_view = ttk.Button(bar, text="Ver cambios", command=self.open_site, state="disabled")
+        self.btn_view.pack(side="left", padx=(0, 8))
         ttk.Button(bar, text="Guardar producto", command=self.save).pack(side="left")
 
     # ---- lista
@@ -304,6 +399,34 @@ class App(tk.Tk):
             self.lb_images.insert("end", star + label)
         if select is not None and 0 <= select < len(self.images):
             self.lb_images.selection_set(select)
+        self.update_preview()
+
+    def update_preview(self, _event=None):
+        """Muestra la imagen seleccionada (o la principal si no hay ninguna seleccionada)."""
+        c = self.cv_preview
+        c.delete("all")
+        self._preview_photo = None
+        self.lbl_preview.config(text="")
+        sel = self._sel_image()
+        i = sel if sel is not None else (0 if self.images else None)
+        mid = PREVIEW_SIZE // 2
+        if i is None or i >= len(self.images):
+            c.create_text(mid, mid, text="Sin imágenes", fill="#888")
+            return
+        e = self.images[i]
+        path = e["src"] if e["src"] is not None else ROOT / e["path"]
+        photo, size, msg = load_preview(path)
+        if photo is None:
+            c.create_text(mid, mid, text=msg, fill="#888", justify="center", width=PREVIEW_SIZE - 16)
+            return
+        self._preview_photo = photo
+        c.create_image(mid, mid, image=photo)
+        info = f"{size[0]}×{size[1]} px"
+        try:
+            info += f" · {Path(path).stat().st_size // 1024} KB"
+        except OSError:
+            pass
+        self.lbl_preview.config(text=("★ " if i == 0 else "") + info)
 
     def add_images(self):
         paths = filedialog.askopenfilenames(
@@ -366,9 +489,97 @@ class App(tk.Tk):
             del self.colors[sel[0]]
             self.refresh_colors()
 
+    # ---- presets de color (se guardan en admin_presets.json)
+    def refresh_presets(self, select=None):
+        self.cb_preset["values"] = [f"{p['nombre']}  ({p['hex']})" for p in self.presets]
+        if select is not None and 0 <= select < len(self.presets):
+            self.cb_preset.current(select)
+        else:
+            self.v_preset.set("")
+        self.on_preset_select()
+
+    def _sel_preset(self):
+        i = self.cb_preset.current()
+        return i if 0 <= i < len(self.presets) else None
+
+    def on_preset_select(self, _event=None):
+        i = self._sel_preset()
+        self.sw_preset.config(bg=self.presets[i]["hex"] if i is not None else self._sw_default)
+
+    def use_preset(self):
+        """Agrega el preset elegido a los colores del producto."""
+        i = self._sel_preset()
+        if i is None:
+            return messagebox.showinfo("Presets", "Elige un preset de la lista.")
+        c = self.presets[i]
+        if any(x["hex"].lower() == c["hex"] and x["nombre"].lower() == c["nombre"].lower() for x in self.colors):
+            return messagebox.showinfo("Presets", f"'{c['nombre']}' ya está en este producto.")
+        self.colors.append({"nombre": c["nombre"], "hex": c["hex"]})
+        self.refresh_colors()
+
+    def save_preset(self):
+        """Guarda como preset lo escrito en Nombre/Hex; si el nombre está vacío, el color seleccionado de la lista."""
+        name, hexv = self.v_cname.get().strip(), self.v_chex.get().strip()
+        if not name:
+            sel = self.lb_colors.curselection()
+            if not sel:
+                return messagebox.showwarning(
+                    "Preset", "Escribe el nombre y el hex del color, o selecciona uno de la lista de colores.")
+            name, hexv = self.colors[sel[0]]["nombre"], self.colors[sel[0]]["hex"]
+        if not HEX_RE.fullmatch(hexv):
+            return messagebox.showwarning("Preset", "El hex debe tener el formato #RRGGBB (ej. #ffc83d).")
+        hexv = hexv.lower()
+        for idx, p in enumerate(self.presets):
+            if p["nombre"].lower() == name.lower():      # mismo nombre: se actualiza el color
+                p["nombre"], p["hex"] = name, hexv
+                break
+        else:
+            self.presets.append({"nombre": name, "hex": hexv})
+            idx = len(self.presets) - 1
+        try:
+            save_presets(self.presets)
+        except OSError as e:
+            return messagebox.showerror("Error al guardar presets", str(e))
+        self.refresh_presets(select=idx)
+
+    def delete_preset(self):
+        i = self._sel_preset()
+        if i is None:
+            return messagebox.showinfo("Presets", "Elige un preset de la lista.")
+        if not messagebox.askyesno("Presets", f"¿Borrar el preset '{self.presets[i]['nombre']}'?"):
+            return
+        del self.presets[i]
+        try:
+            save_presets(self.presets)
+        except OSError as e:
+            return messagebox.showerror("Error al guardar presets", str(e))
+        self.refresh_presets()
+
+    # ---- botón "Ver cambios" (gris durante la espera de GitHub Pages)
+    def _stop_view_timer(self):
+        if self._view_timer is not None:
+            self.after_cancel(self._view_timer)
+            self._view_timer = None
+
+    def reset_view_button(self):
+        self._stop_view_timer()
+        self.btn_view.config(text="Ver cambios", state="disabled")
+
+    def start_view_countdown(self, remaining=PAGES_WAIT):
+        self._stop_view_timer()
+        if remaining <= 0:
+            self.btn_view.config(text="Ver cambios", state="normal")
+            return
+        self.btn_view.config(text=f"Ver cambios ({remaining}s)", state="disabled")
+        self._view_timer = self.after(1000, lambda: self.start_view_countdown(remaining - 1))
+
+    def open_site(self):
+        webbrowser.open(SITE_URL)
+
     # ---- git push automático (en segundo plano para no congelar la ventana)
     def git_push(self, message):
         self.lbl_git.config(text="⏳ Subiendo a GitHub…", foreground="#666")
+        self.reset_view_button()
         result = {}
 
         def work():
@@ -380,6 +591,7 @@ class App(tk.Tk):
             ok, detail = result["r"]
             if ok:
                 self.lbl_git.config(text="✔ Subido a GitHub", foreground="#2e7d32")
+                self.start_view_countdown()
             else:
                 self.lbl_git.config(text="✘ No se pudo subir", foreground="#c62828")
                 messagebox.showwarning(

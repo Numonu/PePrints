@@ -1,0 +1,22 @@
+[
+  {
+    "nombre": "Blanco",
+    "hex": "#ffffff"
+  },
+  {
+    "nombre": "Amarillo Mango",
+    "hex": "#ffc600"
+  },
+  {
+    "nombre": "Azul Noche",
+    "hex": "#0000a0"
+  },
+  {
+    "nombre": "Rojo Peach",
+    "hex": "#ff8080"
+  },
+  {
+    "nombre": "Morado Uva",
+    "hex": "#a800a8"
+  }
+]

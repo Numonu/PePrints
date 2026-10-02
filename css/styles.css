@@ -48,7 +48,7 @@ button { font: inherit; cursor: pointer; }
 .header-inner {
   max-width: 1280px; margin: 0 auto; padding: 0 32px;
   height: 72px;
-  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;direction: rtl;
 }
 .logo {
   grid-column: 2;
