@@ -272,5 +272,38 @@
     },
     "stock": "a pedido",
     "categoria": "Decoraciones"
+  },
+  {
+    "id": 11,
+    "nombre": "Juguete antiestrés de calabaza",
+    "descripcion": "Pequeños adornos para la atmósfera de Halloween\nJuguete antiestrés deslizante extensible\nCalabaza terrorífica de Halloween",
+    "precio": 12,
+    "imagen": "images/juguete-antiestres-de-calabaza.png",
+    "imagenes": [
+      "images/juguete-antiestres-de-calabaza.png",
+      "images/juguete-antiestres-de-calabaza-2.png",
+      "images/juguete-antiestres-de-calabaza-3.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Rojo Peach",
+        "hex": "#ff8080"
+      },
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffc600"
+      },
+      {
+        "nombre": "Azul Noche",
+        "hex": "#0000a0"
+      }
+    ],
+    "medidas": {
+      "alto": 5,
+      "ancho": 5,
+      "profundidad": 5
+    },
+    "stock": "a pedido",
+    "categoria": "Juguetes"
   }
 ]
