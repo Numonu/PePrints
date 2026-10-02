@@ -217,5 +217,29 @@
     },
     "stock": "a pedido",
     "categoria": "Decoraciones"
+  },
+  {
+    "id": 9,
+    "nombre": "Pack 3 Bolas de Navidad Articuladas",
+    "descripcion": "Estas son unas bolas de Navidad muy bonitas y sencillas, con una pierna articulada y brazos adorables… todo se imprime en su lugar\n\n \n\nLa bola está hecha de un solo cuerpo, y un gancho en la parte superior perfecto para añadir a tu árbol de Navidad\n\nDiviértete, feliz Navidad y disfrútalo…-",
+    "precio": 7,
+    "imagen": "images/pack-3-bolas-de-navidad-articuladas.png",
+    "imagenes": [
+      "images/pack-3-bolas-de-navidad-articuladas.png",
+      "images/pack-3-bolas-de-navidad-articuladas-2.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Rojo Peach",
+        "hex": "#ff8080"
+      }
+    ],
+    "medidas": {
+      "alto": 5,
+      "ancho": 4,
+      "profundidad": 5
+    },
+    "stock": "disponible",
+    "categoria": "Decoraciones"
   }
 ]
