@@ -14,10 +14,6 @@
       {
         "nombre": "Blanco",
         "hex": "#ffffff"
-      },
-      {
-        "nombre": "Dorado",
-        "hex": "#ffc640"
       }
     ],
     "medidas": {
@@ -33,9 +29,8 @@
     "nombre": "Esqueleto Articulado de Dinosaurio",
     "descripcion": "Eesqueleto de dinosaurio con un cuerpo articulado, cráneo detallado, cola móvil y extremidades con garras. Diseñado con textura visible y un estilo lúdico inspirado en fósiles, este modelo es ideal como exhibición de escritorio, pieza de colección o un divertido juguete",
     "precio": 12,
-    "imagen": "images/esqueleto-articulado-de-dinosaurio.png",
+    "imagen": "images/esqueleto-articulado-de-dinosaurio.jpeg",
     "imagenes": [
-      "images/esqueleto-articulado-de-dinosaurio.png",
       "images/esqueleto-articulado-de-dinosaurio.jpeg",
       "images/esqueleto-articulado-de-dinosaurio-2.jpeg",
       "images/esqueleto-articulado-de-dinosaurio-3.jpeg"
@@ -62,6 +57,7 @@
     "imagen": "images/side-4.png",
     "imagenes": [
       "images/side-4.png",
+      "images/side-4-2.png",
       "images/side-5.png",
       "images/side-6.png"
     ],
@@ -69,6 +65,10 @@
       {
         "nombre": "Blanco",
         "hex": "#ffffff"
+      },
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffc600"
       }
     ],
     "medidas": {
@@ -78,5 +78,92 @@
     },
     "stock": "disponible",
     "categoria": "Decoraciones"
+  },
+  {
+    "id": 4,
+    "nombre": "Mini Estatua de la Virgen Maria",
+    "descripcion": "Escultura abstracta y serena de María en oración",
+    "precio": 6,
+    "imagen": "images/estatua-de-la-virgen-maria.png",
+    "imagenes": [
+      "images/estatua-de-la-virgen-maria.png",
+      "images/estatua-de-la-virgen-maria-2.png",
+      "images/estatua-de-la-virgen-maria-3.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Blanco",
+        "hex": "#ffffff"
+      }
+    ],
+    "medidas": {
+      "alto": 12,
+      "ancho": 5,
+      "profundidad": 5
+    },
+    "stock": "a pedido",
+    "categoria": "Decoraciones"
+  },
+  {
+    "id": 5,
+    "nombre": "Corazón de Rosa Eterna",
+    "descripcion": "¡Encanta a tus seres queridos con el Corazón de Rosa Eterna! El regalo perfecto de diseño moderno para San Valentín o como decoración con estilo para tu hogar",
+    "precio": 12,
+    "imagen": "images/corazon-de-rosa-eterna.png",
+    "imagenes": [
+      "images/corazon-de-rosa-eterna.png",
+      "images/corazon-de-rosa-eterna-2.png",
+      "images/corazon-de-rosa-eterna-3.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Rojo Claro",
+        "hex": "#ff6f55"
+      },
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffc600"
+      }
+    ],
+    "medidas": {
+      "alto": 12,
+      "ancho": 5,
+      "profundidad": 5
+    },
+    "stock": "a pedido",
+    "categoria": "Decoraciones"
+  },
+  {
+    "id": 6,
+    "nombre": "Tung Tung Sahur BUDDY - Articulado",
+    "descripcion": "Tung Tung Sahur con piernas móviles",
+    "precio": 4,
+    "imagen": "images/tung-tung-sahur-buddy-articulado.png",
+    "imagenes": [
+      "images/tung-tung-sahur-buddy-articulado.png",
+      "images/tung-tung-sahur-buddy-articulado-2.png",
+      "images/tung-tung-sahur-buddy-articulado-3.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffbc40"
+      },
+      {
+        "nombre": "Azul Noche",
+        "hex": "#0000a0"
+      },
+      {
+        "nombre": "Rojo Peach",
+        "hex": "#ff8080"
+      }
+    ],
+    "medidas": {
+      "alto": 5,
+      "ancho": 5,
+      "profundidad": 5
+    },
+    "stock": "disponible",
+    "categoria": "Juguetes"
   }
 ]

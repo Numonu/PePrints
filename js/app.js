@@ -3,7 +3,7 @@
    ========================================================= */
 const CONFIG = {
   // Número de WhatsApp con código de país, solo dígitos (Perú = 51)
-  whatsappNumber: "51930792137",
+  whatsappNumber: "51930224555",
   // Símbolo de moneda
   currency: "S/",
   // Ruta del JSON de productos (relativa a index.html)

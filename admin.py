@@ -11,8 +11,11 @@ Uso:   python admin.py      (desde la raíz del proyecto)
   (llavero-gato.png, llavero-gato-2.gif, llavero-gato-3.jpg…). La extensión se conserva.
 """
 import json
+import os
 import re
 import shutil
+import subprocess
+import threading
 import unicodedata
 from pathlib import Path
 import tkinter as tk
@@ -45,6 +48,39 @@ def save_products(products):
         json.dump(products, f, ensure_ascii=False, indent=2)
         f.write("\n")
     tmp.replace(JSON_PATH)
+
+
+GIT_PATHS = ["data/products.json", "images"]   # lo único que se sube
+GIT_LOCK = threading.Lock()
+
+
+def git_publish(message):
+    """git add + commit + push de products.json e images/. Devuelve (ok, detalle)."""
+    env = dict(os.environ, GIT_TERMINAL_PROMPT="0")  # que nunca se quede esperando una contraseña
+    flags = getattr(subprocess, "CREATE_NO_WINDOW", 0)  # sin ventana de consola en Windows
+
+    def git(*args):
+        return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True,
+                              encoding="utf-8", errors="replace", env=env, timeout=180,
+                              creationflags=flags)
+
+    try:
+        with GIT_LOCK:
+            r = git("add", "-A", "--", *GIT_PATHS)
+            if r.returncode:
+                return False, r.stderr.strip() or r.stdout.strip()
+            if git("status", "--porcelain", "--", *GIT_PATHS).stdout.strip():
+                r = git("commit", "-m", message, "--", *GIT_PATHS)
+                if r.returncode:
+                    return False, r.stderr.strip() or r.stdout.strip()
+            r = git("push")
+            if r.returncode:
+                return False, r.stderr.strip() or r.stdout.strip()
+        return True, ""
+    except FileNotFoundError:
+        return False, "No se encontró 'git' en este equipo."
+    except subprocess.TimeoutExpired:
+        return False, "git tardó demasiado (¿sin internet o pidiendo credenciales?)."
 
 
 def product_images(p):
@@ -199,6 +235,8 @@ class App(tk.Tk):
         bar.grid(row=r, column=0, columnspan=4, sticky="e", pady=16)
         self.lbl_mode = ttk.Label(bar, text="")
         self.lbl_mode.pack(side="left", padx=12)
+        self.lbl_git = ttk.Label(bar, text="")
+        self.lbl_git.pack(side="left", padx=12)
         ttk.Button(bar, text="Guardar producto", command=self.save).pack(side="left")
 
     # ---- lista
@@ -328,6 +366,29 @@ class App(tk.Tk):
             del self.colors[sel[0]]
             self.refresh_colors()
 
+    # ---- git push automático (en segundo plano para no congelar la ventana)
+    def git_push(self, message):
+        self.lbl_git.config(text="⏳ Subiendo a GitHub…", foreground="#666")
+        result = {}
+
+        def work():
+            result["r"] = git_publish(message)
+
+        def poll():
+            if "r" not in result:
+                return self.after(300, poll)
+            ok, detail = result["r"]
+            if ok:
+                self.lbl_git.config(text="✔ Subido a GitHub", foreground="#2e7d32")
+            else:
+                self.lbl_git.config(text="✘ No se pudo subir", foreground="#c62828")
+                messagebox.showwarning(
+                    "Git push",
+                    "El producto se guardó, pero no se pudo subir a GitHub:\n\n" + detail[:800])
+
+        threading.Thread(target=work, daemon=True).start()
+        self.after(300, poll)
+
     # ---- guardar / eliminar
     def save(self):
         try:
@@ -401,6 +462,7 @@ class App(tk.Tk):
         except OSError as e:
             return messagebox.showerror("Error al guardar", str(e))
 
+        self.git_push(f"{'Actualizar' if editing else 'Agregar'} producto: {nombre}")
         self.refresh_list(select=idx)
         self.load_into_form(idx)
         messagebox.showinfo("Listo", f"Producto '{nombre}' guardado en data/products.json")
