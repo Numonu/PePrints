@@ -305,5 +305,33 @@
     },
     "stock": "a pedido",
     "categoria": "Juguetes"
+  },
+  {
+    "id": 12,
+    "nombre": "Pack de 2 Soporte para Telefono de Ditto",
+    "descripcion": "Soporte para telefono con forma del pokemon Ditto",
+    "precio": 10,
+    "imagen": "images/soporte-para-telefono-de-ditto.png",
+    "imagenes": [
+      "images/soporte-para-telefono-de-ditto.png",
+      "images/soporte-para-telefono-de-ditto-2.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Morado Uva",
+        "hex": "#a800a8"
+      },
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffc600"
+      }
+    ],
+    "medidas": {
+      "alto": 2,
+      "ancho": 11,
+      "profundidad": 5
+    },
+    "stock": "disponible",
+    "categoria": "Decoraciones"
   }
 ]
