@@ -333,5 +333,40 @@
     },
     "stock": "disponible",
     "categoria": "Decoraciones"
+  },
+  {
+    "id": 13,
+    "nombre": "Pack 4 Multi Clicker Giratorio",
+    "descripcion": "Juguete antiestres para niños",
+    "precio": 16,
+    "imagen": "images/multi-clicker-giratorio.png",
+    "imagenes": [
+      "images/multi-clicker-giratorio.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffc600"
+      },
+      {
+        "nombre": "Azul Noche",
+        "hex": "#0000a0"
+      },
+      {
+        "nombre": "Rojo Peach",
+        "hex": "#ff8080"
+      },
+      {
+        "nombre": "Morado Uva",
+        "hex": "#a800a8"
+      }
+    ],
+    "medidas": {
+      "alto": 3,
+      "ancho": 7,
+      "profundidad": 5
+    },
+    "stock": "a pedido",
+    "categoria": "Juguetes"
   }
 ]
