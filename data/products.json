@@ -189,5 +189,33 @@
     },
     "stock": "a pedido",
     "categoria": "Decoraciones"
+  },
+  {
+    "id": 8,
+    "nombre": "Pack 3 Copos de Nieve Articulados",
+    "descripcion": "Copo de nieve articulado",
+    "precio": 12,
+    "imagen": "images/captura-de-pantalla-2026-10-02-181858.png",
+    "imagenes": [
+      "images/captura-de-pantalla-2026-10-02-181858.png",
+      "images/captura-de-pantalla-2026-10-02-181858-2.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Blanco",
+        "hex": "#ffffff"
+      },
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffc600"
+      }
+    ],
+    "medidas": {
+      "alto": 7,
+      "ancho": 8,
+      "profundidad": 4
+    },
+    "stock": "a pedido",
+    "categoria": "Decoraciones"
   }
 ]
