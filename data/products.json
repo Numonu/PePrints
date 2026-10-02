@@ -68,6 +68,10 @@
       {
         "nombre": "Blanco",
         "hex": "#ffffff"
+      },
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffc600"
       }
     ],
     "medidas": {
