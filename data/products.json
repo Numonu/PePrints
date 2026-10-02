@@ -78,5 +78,30 @@
     },
     "stock": "disponible",
     "categoria": "Decoraciones"
+  },
+  {
+    "id": 4,
+    "nombre": "Mini Estatua de la Virgen Maria",
+    "descripcion": "Escultura abstracta y serena de María en oración",
+    "precio": 6,
+    "imagen": "images/estatua-de-la-virgen-maria.png",
+    "imagenes": [
+      "images/estatua-de-la-virgen-maria.png",
+      "images/estatua-de-la-virgen-maria-2.png",
+      "images/estatua-de-la-virgen-maria-3.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Blanco",
+        "hex": "#ffffff"
+      }
+    ],
+    "medidas": {
+      "alto": 12,
+      "ancho": 5,
+      "profundidad": 5
+    },
+    "stock": "a pedido",
+    "categoria": "Decoraciones"
   }
 ]
