@@ -81,9 +81,9 @@
   },
   {
     "id": 4,
-    "nombre": "Mini Estatua de la Virgen Maria",
+    "nombre": "Pack 2 Mini Estatua de la Virgen Maria",
     "descripcion": "Escultura abstracta y serena de María en oración",
-    "precio": 6,
+    "precio": 12,
     "imagen": "images/estatua-de-la-virgen-maria.png",
     "imagenes": [
       "images/estatua-de-la-virgen-maria.png",
