@@ -241,5 +241,36 @@
     },
     "stock": "disponible",
     "categoria": "Decoraciones"
+  },
+  {
+    "id": 10,
+    "nombre": "Pack 12 Adornos para el Arbol de Navidad",
+    "descripcion": "Adorno moderno para árbol de Navidad, decoración acogedora para tu árbol de Navidad",
+    "precio": 36,
+    "imagen": "images/pack-12-adornos-para-el-arbol-de-navidad.png",
+    "imagenes": [
+      "images/pack-12-adornos-para-el-arbol-de-navidad.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Rojo Peach",
+        "hex": "#ff8080"
+      },
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffc600"
+      },
+      {
+        "nombre": "Azul Noche",
+        "hex": "#0000a0"
+      }
+    ],
+    "medidas": {
+      "alto": 8,
+      "ancho": 5,
+      "profundidad": 5
+    },
+    "stock": "a pedido",
+    "categoria": "Decoraciones"
   }
 ]
