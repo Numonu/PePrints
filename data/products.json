@@ -103,5 +103,34 @@
     },
     "stock": "a pedido",
     "categoria": "Decoraciones"
+  },
+  {
+    "id": 5,
+    "nombre": "Corazón de Rosa Eterna",
+    "descripcion": "¡Encanta a tus seres queridos con el Corazón de Rosa Eterna! El regalo perfecto de diseño moderno para San Valentín o como decoración con estilo para tu hogar",
+    "precio": 12,
+    "imagen": "images/corazon-de-rosa-eterna.png",
+    "imagenes": [
+      "images/corazon-de-rosa-eterna.png",
+      "images/corazon-de-rosa-eterna-2.png",
+      "images/corazon-de-rosa-eterna-3.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Rojo Claro",
+        "hex": "#ff6f55"
+      },
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffc600"
+      }
+    ],
+    "medidas": {
+      "alto": 12,
+      "ancho": 5,
+      "profundidad": 5
+    },
+    "stock": "a pedido",
+    "categoria": "Decoraciones"
   }
 ]
