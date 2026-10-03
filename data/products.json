@@ -164,7 +164,8 @@
       "profundidad": 5
     },
     "stock": "disponible",
-    "categoria": "Juguetes"
+    "categoria": "Juguetes",
+    "destacado": true
   },
   {
     "id": 7,
