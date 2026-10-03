@@ -1,5 +1,45 @@
 [
   {
+    "id": 15,
+    "nombre": "Estatua Personalizada de tu eleccion",
+    "descripcion": "Quieres tener una estatuilla de algun familiar, amigo,hijo incluso una celebridad. Nosotros crearemos una estatua personalizada para ti, solo necesitamos una foto del sujeto y lo tendras inmortalizado en una estatua conmemorativa",
+    "precio": 50,
+    "imagen": "images/estatua-personalizada-de-tu-eleccion.png",
+    "imagenes": [
+      "images/estatua-personalizada-de-tu-eleccion.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Morado Uva",
+        "hex": "#a800a8"
+      },
+      {
+        "nombre": "Blanco",
+        "hex": "#ffffff"
+      },
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffc600"
+      },
+      {
+        "nombre": "Azul Noche",
+        "hex": "#0000a0"
+      },
+      {
+        "nombre": "Rojo Peach",
+        "hex": "#ff8080"
+      }
+    ],
+    "medidas": {
+      "alto": 20,
+      "ancho": 15,
+      "profundidad": 15
+    },
+    "stock": "a pedido",
+    "categoria": "Decoraciones",
+    "destacado": true
+  },
+  {
     "id": 1,
     "nombre": "Llavero de Tiburon Articulado",
     "descripcion": "Tiburón esqueleto flexible y articulado. El modelo presenta un diseño esquelético detallado con dientes afilados y una estructura ósea limpia, lo que le da un aspecto audaz y llamativo. Está diseñado para ser simple y duradero",
@@ -399,46 +439,6 @@
       {
         "nombre": "Morado Uva",
         "hex": "#a800a8"
-      }
-    ],
-    "medidas": {
-      "alto": 20,
-      "ancho": 15,
-      "profundidad": 15
-    },
-    "stock": "a pedido",
-    "categoria": "Decoraciones",
-    "destacado": true
-  },
-  {
-    "id": 15,
-    "nombre": "Estatua Personalizada de tu eleccion",
-    "descripcion": "Quieres tener una estatuilla de algun familiar, amigo,hijo incluso una celebridad. Nosotros crearemos una estatua personalizada para ti, solo necesitamos una foto del sujeto y lo tendras inmortalizado en una estatua conmemorativa",
-    "precio": 50,
-    "imagen": "images/estatua-personalizada-de-tu-eleccion.png",
-    "imagenes": [
-      "images/estatua-personalizada-de-tu-eleccion.png"
-    ],
-    "colores": [
-      {
-        "nombre": "Morado Uva",
-        "hex": "#a800a8"
-      },
-      {
-        "nombre": "Blanco",
-        "hex": "#ffffff"
-      },
-      {
-        "nombre": "Amarillo Mango",
-        "hex": "#ffc600"
-      },
-      {
-        "nombre": "Azul Noche",
-        "hex": "#0000a0"
-      },
-      {
-        "nombre": "Rojo Peach",
-        "hex": "#ff8080"
       }
     ],
     "medidas": {
