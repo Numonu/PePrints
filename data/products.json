@@ -40,6 +40,46 @@
     "destacado": true
   },
   {
+    "id": 14,
+    "nombre": "Estatua Personalizada de Tu Mascota",
+    "descripcion": "Envianos una Foto de tu Mascota y Nosotros lo convertiremos en una Estatua de Decoracion",
+    "precio": 50,
+    "imagen": "images/captura-de-pantalla-2026-10-02-184817.png",
+    "imagenes": [
+      "images/captura-de-pantalla-2026-10-02-184817.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Azul Noche",
+        "hex": "#0000a0"
+      },
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffc600"
+      },
+      {
+        "nombre": "Blanco",
+        "hex": "#ffffff"
+      },
+      {
+        "nombre": "Rojo Peach",
+        "hex": "#ff8080"
+      },
+      {
+        "nombre": "Morado Uva",
+        "hex": "#a800a8"
+      }
+    ],
+    "medidas": {
+      "alto": 20,
+      "ancho": 15,
+      "profundidad": 15
+    },
+    "stock": "a pedido",
+    "categoria": "Decoraciones",
+    "destacado": true
+  },
+  {
     "id": 1,
     "nombre": "Llavero de Tiburon Articulado",
     "descripcion": "Tiburón esqueleto flexible y articulado. El modelo presenta un diseño esquelético detallado con dientes afilados y una estructura ósea limpia, lo que le da un aspecto audaz y llamativo. Está diseñado para ser simple y duradero",
@@ -409,45 +449,5 @@
     },
     "stock": "a pedido",
     "categoria": "Juguetes"
-  },
-  {
-    "id": 14,
-    "nombre": "Estatua Personalizada de Tu Mascota",
-    "descripcion": "Envianos una Foto de tu Mascota y Nosotros lo convertiremos en una Estatua de Decoracion",
-    "precio": 50,
-    "imagen": "images/captura-de-pantalla-2026-10-02-184817.png",
-    "imagenes": [
-      "images/captura-de-pantalla-2026-10-02-184817.png"
-    ],
-    "colores": [
-      {
-        "nombre": "Azul Noche",
-        "hex": "#0000a0"
-      },
-      {
-        "nombre": "Amarillo Mango",
-        "hex": "#ffc600"
-      },
-      {
-        "nombre": "Blanco",
-        "hex": "#ffffff"
-      },
-      {
-        "nombre": "Rojo Peach",
-        "hex": "#ff8080"
-      },
-      {
-        "nombre": "Morado Uva",
-        "hex": "#a800a8"
-      }
-    ],
-    "medidas": {
-      "alto": 20,
-      "ancho": 15,
-      "profundidad": 15
-    },
-    "stock": "a pedido",
-    "categoria": "Decoraciones",
-    "destacado": true
   }
 ]
