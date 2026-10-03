@@ -251,7 +251,7 @@
     "id": 7,
     "nombre": "Figura Detallada de María, José y Jesús",
     "descripcion": "Captura el profundo momento de adoración con esta figura de la Sagrada Familia exquisitamente detallada. Esta pieza representa bellamente a María y José humildemente en adoración ante el niño Jesús. Esta escultura encarna la humildad y la fe profunda, convirtiéndola en una pieza central poderosa y contemplativa para tu espacio devocional o tu belén",
-    "precio": 15,
+    "precio": 20,
     "imagen": "images/figura-detallada-de-maria-jose-y-jesus.png",
     "imagenes": [
       "images/figura-detallada-de-maria-jose-y-jesus.png",
@@ -264,7 +264,7 @@
       }
     ],
     "medidas": {
-      "alto": 15,
+      "alto": 18,
       "ancho": 7,
       "profundidad": 7
     },
