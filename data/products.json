@@ -406,7 +406,8 @@
       "profundidad": 15
     },
     "stock": "a pedido",
-    "categoria": "Decoraciones"
+    "categoria": "Decoraciones",
+    "destacado": true
   },
   {
     "id": 15,
