@@ -507,5 +507,34 @@
     },
     "stock": "a pedido",
     "categoria": "Decoraciones"
+  },
+  {
+    "id": 18,
+    "nombre": "Decoracion de fantasma bruja",
+    "descripcion": "Decoracion de hallowen",
+    "precio": 21,
+    "imagen": "images/decoracion-de-fantasma-bruja.png",
+    "imagenes": [
+      "images/decoracion-de-fantasma-bruja.png",
+      "images/decoracion-de-fantasma-bruja-2.png",
+      "images/decoracion-de-fantasma-bruja-3.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Blanco",
+        "hex": "#ffffff"
+      },
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffc600"
+      }
+    ],
+    "medidas": {
+      "alto": 10,
+      "ancho": 7,
+      "profundidad": 7
+    },
+    "stock": "a pedido",
+    "categoria": "Decoraciones"
   }
 ]
