@@ -564,5 +564,34 @@
     },
     "stock": "a pedido",
     "categoria": "Decoraciones"
+  },
+  {
+    "id": 20,
+    "nombre": "Decoracion de belen navideño",
+    "descripcion": "Decoracion navideño",
+    "precio": 21,
+    "imagen": "images/decoracion-de-belen-navideno.png",
+    "imagenes": [
+      "images/decoracion-de-belen-navideno.png",
+      "images/decoracion-de-belen-navideno-2.png",
+      "images/decoracion-de-belen-navideno-3.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffc600"
+      },
+      {
+        "nombre": "Blanco",
+        "hex": "#ffffff"
+      }
+    ],
+    "medidas": {
+      "alto": 9,
+      "ancho": 10,
+      "profundidad": 10
+    },
+    "stock": "disponible",
+    "categoria": "Decoraciones"
   }
 ]
