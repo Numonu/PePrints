@@ -449,5 +449,34 @@
     },
     "stock": "a pedido",
     "categoria": "Juguetes"
+  },
+  {
+    "id": 16,
+    "nombre": "Angel de Navidad Minimalista",
+    "descripcion": "Decocarion de navidad en forma de Angel minimalista",
+    "precio": 7,
+    "imagen": "images/angel-de-navidad-minimalista.png",
+    "imagenes": [
+      "images/angel-de-navidad-minimalista.png",
+      "images/angel-de-navidad-minimalista-2.png",
+      "images/angel-de-navidad-minimalista-3.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Blanco",
+        "hex": "#ffffff"
+      },
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffc600"
+      }
+    ],
+    "medidas": {
+      "alto": 10,
+      "ancho": 6,
+      "profundidad": 5
+    },
+    "stock": "a pedido",
+    "categoria": "Decoraciones"
   }
 ]
