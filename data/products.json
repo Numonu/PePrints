@@ -478,5 +478,34 @@
     },
     "stock": "a pedido",
     "categoria": "Decoraciones"
+  },
+  {
+    "id": 17,
+    "nombre": "Decoracion de aldea navideña nevada",
+    "descripcion": "Decoracion navideña de aldea navideña",
+    "precio": 20,
+    "imagen": "images/decoracion-de-aldea-navidena-nevada.png",
+    "imagenes": [
+      "images/decoracion-de-aldea-navidena-nevada.png",
+      "images/decoracion-de-aldea-navidena-nevada-2.png",
+      "images/decoracion-de-aldea-navidena-nevada-3.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Blanco",
+        "hex": "#ffffff"
+      },
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffc600"
+      }
+    ],
+    "medidas": {
+      "alto": 12,
+      "ancho": 14,
+      "profundidad": 14
+    },
+    "stock": "a pedido",
+    "categoria": "Decoraciones"
   }
 ]
