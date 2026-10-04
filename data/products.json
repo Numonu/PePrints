@@ -593,5 +593,38 @@
     },
     "stock": "disponible",
     "categoria": "Decoraciones"
+  },
+  {
+    "id": 21,
+    "nombre": "Dinosaurio Articulado",
+    "descripcion": "Dinosaurio articulado que se puede poner de pie o tumbado, con boca movible",
+    "precio": 15,
+    "imagen": "images/dinosaurio-articulado.png",
+    "imagenes": [
+      "images/dinosaurio-articulado.png",
+      "images/dinosaurio-articulado-2.png",
+      "images/dinosaurio-articulado-3.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Rojo Peach",
+        "hex": "#ff8080"
+      },
+      {
+        "nombre": "Azul Noche",
+        "hex": "#0000a0"
+      },
+      {
+        "nombre": "Morado Uva",
+        "hex": "#a800a8"
+      }
+    ],
+    "medidas": {
+      "alto": 7,
+      "ancho": 22,
+      "profundidad": 7
+    },
+    "stock": "disponible",
+    "categoria": "Juguetes"
   }
 ]
