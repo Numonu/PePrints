@@ -147,6 +147,30 @@
     "categoria": "Juguetes"
   },
   {
+    "id": 7,
+    "nombre": "Figura Detallada de María, José y Jesús",
+    "descripcion": "Captura el profundo momento de adoración con esta figura de la Sagrada Familia exquisitamente detallada. Esta pieza representa bellamente a María y José humildemente en adoración ante el niño Jesús. Esta escultura encarna la humildad y la fe profunda, convirtiéndola en una pieza central poderosa y contemplativa para tu espacio devocional o tu belén",
+    "precio": 20,
+    "imagen": "images/figura-detallada-de-maria-jose-y-jesus.png",
+    "imagenes": [
+      "images/figura-detallada-de-maria-jose-y-jesus.png",
+      "images/figura-detallada-de-maria-jose-y-jesus-2.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Blanco",
+        "hex": "#ffffff"
+      }
+    ],
+    "medidas": {
+      "alto": 18,
+      "ancho": 7,
+      "profundidad": 7
+    },
+    "stock": "a pedido",
+    "categoria": "Decoraciones"
+  },
+  {
     "id": 1,
     "nombre": "Llavero de Tiburon Articulado",
     "descripcion": "Tiburón esqueleto flexible y articulado. El modelo presenta un diseño esquelético detallado con dientes afilados y una estructura ósea limpia, lo que le da un aspecto audaz y llamativo. Está diseñado para ser simple y duradero",
@@ -276,30 +300,6 @@
       "alto": 12,
       "ancho": 5,
       "profundidad": 5
-    },
-    "stock": "a pedido",
-    "categoria": "Decoraciones"
-  },
-  {
-    "id": 7,
-    "nombre": "Figura Detallada de María, José y Jesús",
-    "descripcion": "Captura el profundo momento de adoración con esta figura de la Sagrada Familia exquisitamente detallada. Esta pieza representa bellamente a María y José humildemente en adoración ante el niño Jesús. Esta escultura encarna la humildad y la fe profunda, convirtiéndola en una pieza central poderosa y contemplativa para tu espacio devocional o tu belén",
-    "precio": 20,
-    "imagen": "images/figura-detallada-de-maria-jose-y-jesus.png",
-    "imagenes": [
-      "images/figura-detallada-de-maria-jose-y-jesus.png",
-      "images/figura-detallada-de-maria-jose-y-jesus-2.png"
-    ],
-    "colores": [
-      {
-        "nombre": "Blanco",
-        "hex": "#ffffff"
-      }
-    ],
-    "medidas": {
-      "alto": 18,
-      "ancho": 7,
-      "profundidad": 7
     },
     "stock": "a pedido",
     "categoria": "Decoraciones"
