@@ -536,5 +536,33 @@
     },
     "stock": "a pedido",
     "categoria": "Decoraciones"
+  },
+  {
+    "id": 19,
+    "nombre": "Decoracion de diorama espectral de hallowen",
+    "descripcion": "Decoracion de hallowen diorama espectral",
+    "precio": 14,
+    "imagen": "images/decoracion-de-diorama-espectral-de-hallowen.png",
+    "imagenes": [
+      "images/decoracion-de-diorama-espectral-de-hallowen.png",
+      "images/decoracion-de-diorama-espectral-de-hallowen-2.png"
+    ],
+    "colores": [
+      {
+        "nombre": "Blanco",
+        "hex": "#ffffff"
+      },
+      {
+        "nombre": "Amarillo Mango",
+        "hex": "#ffc600"
+      }
+    ],
+    "medidas": {
+      "alto": 10,
+      "ancho": 9,
+      "profundidad": 9
+    },
+    "stock": "a pedido",
+    "categoria": "Decoraciones"
   }
 ]
